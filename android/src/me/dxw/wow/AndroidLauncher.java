@@ -11,9 +11,11 @@ public class AndroidLauncher extends AndroidApplication {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.numSamples = 2;
-		initialize(new WoW(), config);
+
+		setContentView(initializeForView(new WoW(), config));
 	}
 
 	@Override
