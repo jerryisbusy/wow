@@ -11,42 +11,35 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Knight extends Actor {
 
 	public static final String[] RED = {
-			"images/ff0000-ffffff-O.png",
-			"images/ff0000-ffffff-1.png",
-			"images/ff0000-ffffff-2.png",
-			"images/ff0000-ffffff-3.png",
-			"images/ff0000-ffffff-4.png",
-			"images/ff0000-ffffff-5.png",
-			"images/ff0000-ffffff-6.png",
-			"images/ff0000-ffffff-7.png",
-			"images/ff0000-ffffff-8.png",
-			"images/ff0000-ffffff-9.png",
+			"images/red-O.png",
+			"images/red-1.png",
+			"images/red-2.png",
+			"images/red-3.png",
+			"images/red-4.png",
+			"images/red-5.png",
+			"images/red-6.png",
+			"images/red-7.png",
+			"images/red-8.png",
+			"images/red-9.png",
 	};
 
 	public static final String[] BLUE = {
-			"images/0000ff-ffffff-O.png",
-			"images/0000ff-ffffff-1.png",
-			"images/0000ff-ffffff-2.png",
-			"images/0000ff-ffffff-3.png",
-			"images/0000ff-ffffff-4.png",
-			"images/0000ff-ffffff-5.png",
-			"images/0000ff-ffffff-6.png",
-			"images/0000ff-ffffff-7.png",
-			"images/0000ff-ffffff-8.png",
-			"images/0000ff-ffffff-9.png",
+			"images/blue-O.png",
+			"images/blue-1.png",
+			"images/blue-2.png",
+			"images/blue-3.png",
+			"images/blue-4.png",
+			"images/blue-5.png",
+			"images/blue-6.png",
+			"images/blue-7.png",
+			"images/blue-8.png",
+			"images/blue-9.png",
 	};
-
-	private final int number;
 
 	private Sprite sprite;
 
 	public Knight(int number,boolean red) {
-		this.number = number;
 		this.sprite = new Sprite(new Texture(Gdx.files.internal(red ? RED[number] : BLUE[number])));
-	}
-
-	public int getNumber() {
-		return number;
 	}
 
 	@Override

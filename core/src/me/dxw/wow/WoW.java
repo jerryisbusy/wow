@@ -17,7 +17,7 @@ public class WoW extends ApplicationAdapter {
 
 	private static final float WORLD_WIDTH = 480.0f;
 
-	private static final float GUTTER = 10;
+	private static final float GUTTER = 30;
 	private static final float KNIGHT_SIZE = (WORLD_WIDTH - (GUTTER * (ROW + 1))) / ROW;
 
 	private Stage stage;
@@ -44,7 +44,7 @@ public class WoW extends ApplicationAdapter {
 
 	@Override
 	public void render() {
-		ScreenUtils.clear(Color.WHITE);
+		ScreenUtils.clear(Color.valueOf("#fcfdc0"));
 		stage.draw();
 		stage.act();
 	}
