@@ -14,8 +14,11 @@ public class WoW extends ApplicationAdapter {
 
 	private final static int ROW = 4;
 	private final static int COL = 5;
-	public static final float WORLD_WIDTH = 480.0f;
-	public static final float KNIGHT_SIZE = WORLD_WIDTH / ROW;
+
+	private static final float WORLD_WIDTH = 480.0f;
+
+	private static final float GUTTER = 10;
+	private static final float KNIGHT_SIZE = (WORLD_WIDTH - (GUTTER * (ROW + 1))) / ROW;
 
 	private Stage stage;
 
@@ -27,12 +30,14 @@ public class WoW extends ApplicationAdapter {
 		int screenWidth = Gdx.graphics.getWidth();
 		int screenHeight = Gdx.graphics.getHeight();
 
+		float worldHeight = 480.0f * screenHeight / screenWidth;
+
 		knights = initNumbers(ROW, COL);
 
-		stage = new Stage(new ScalingViewport(Scaling.stretch, WORLD_WIDTH, 480.0f * screenHeight / screenWidth));
-		stage.getCamera().translate(0, -(stage.getHeight() - stage.getWidth() - COL * KNIGHT_SIZE / 2), 0);
+		stage = new Stage(new ScalingViewport(Scaling.stretch, WORLD_WIDTH, worldHeight));
+		stage.getCamera().translate(0, -(worldHeight - KNIGHT_SIZE * COL - GUTTER * (COL + 1)) / 2, 0);
 
-		for (int i = 0; i< knights.size; i++) {
+		for (int i = 0; i < knights.size; i++) {
 			stage.addActor(knights.get(i));
 		}
 	}
@@ -40,8 +45,8 @@ public class WoW extends ApplicationAdapter {
 	@Override
 	public void render() {
 		ScreenUtils.clear(Color.WHITE);
-		stage.act();
 		stage.draw();
+		stage.act();
 	}
 
 	@Override
@@ -60,11 +65,15 @@ public class WoW extends ApplicationAdapter {
 
 		numbers.shuffle();
 
-		for (int i = 0; i< row * col; i++) {
+		for (int i = 0; i < row * col; i++) {
 			Knight knight = numbers.get(i);
 			int x = i % row;
 			int y = i / row;
-			knight.setPosition(x * KNIGHT_SIZE, y * KNIGHT_SIZE);
+
+			float posX = x * KNIGHT_SIZE + (x == 0 ? GUTTER : GUTTER * (x + 1));
+			float posY = y * KNIGHT_SIZE + (y == 0 ? GUTTER : GUTTER * (y + 1));
+
+			knight.setPosition(posX, posY);
 		}
 
 		return numbers;
